@@ -4,7 +4,7 @@
 	 */
 	//Errors
 	error_reporting(E_ALL);
-	ini_set('display_errors', 'On'); //Set in php ini file when I have time
+	ini_set('display_errors', 'On'); //Set to on while developing
 	//Database
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
