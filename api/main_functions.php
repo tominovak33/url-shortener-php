@@ -6,7 +6,7 @@
  * Time: 10:20
  */
 
-function shorten_url($input_url){
+function shorten_url($input_url) {
 
     $input_url=tomi_escape_string($input_url);
     $input_url=htmlspecialchars($input_url);
@@ -22,7 +22,7 @@ function shorten_url($input_url){
 }
 
 
-function get_url($short_url){
+function get_url($short_url) {
 
     $short_url=tomi_escape_string($short_url);
     $short_url=htmlspecialchars($short_url);
@@ -30,5 +30,4 @@ function get_url($short_url){
     $full_url = get_full_url($short_url);
 
     return $full_url;
-
 }

@@ -25,7 +25,6 @@ function http_pad_url($input_url) {
     return $input_url;
 }
 
-
 function insert_url($input_url, $short_url = false) {
     $fields_string="`url_short`, `url_value`, `url_date`";
     $today = current_day();

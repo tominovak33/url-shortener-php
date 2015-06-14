@@ -1,6 +1,6 @@
 <?php 
 /*
-Tomi - DBAL
+Tomi - Database Abstraction Layer
 
 15/11/2014
 
