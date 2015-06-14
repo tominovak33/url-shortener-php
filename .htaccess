@@ -4,4 +4,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 #Rewrite the url if it isn't a resource on the server
 #URL is changed to be the url GET paraeter on the redirect page so it can easily be accessed
-RewriteRule ^(.*)$ redirect.php?url=$1 [R=301,L]
+RewriteRule ^(.*)$ api/?short_url=$1&redirect=true [R=301,L]
