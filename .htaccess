@@ -1,7 +1,17 @@
+# Basic rewrite settings
 RewriteEngine on
 RewriteBase /
+
+# See if the resource that is requested is s file or folder on the server.
+#
+# If not, then send the request to the api: Eg: http://my-url-shortener.com/xyz123
+# becomes http://my-url-shortener.com/api/?short_url=xyz123&redirect=true
+# This way you will get redirected to the full url matching the short url you requested
+#
+# If the actual 301 redirect is not wanted (just the string value of the full url for use in an apllication for example as oppsoed to visiting the url shortener in a browser)
+# then simply request http://my-url-shortener.com/api/?short_url=xyz123 to recieve {"full_url":"http:\/\/test.example.com"}
+#
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#Rewrite the url if it isn't a resource on the server
-#URL is changed to be the url GET paraeter on the redirect page so it can easily be accessed
 RewriteRule ^(.*)$ api/?short_url=$1&redirect=true [R=301,L]
+
