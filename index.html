@@ -5,15 +5,16 @@
       <link rel="stylesheet" href="main.css">
   </head>
   <body>
-     <div class="wrapper text-center margin-middle">
+     <div id="ui-wrapper" class="wrapper text-center margin-middle">
          <h3 class="margin-middle vertical-margin-medium main-heading">URL Shortener</h3>
-        <form action="/api" method="GET" name="url_form" class="form-url vertical-margin-small">
-            <input type="text" name="url" class="url-input block margin-middle vertical-margin-small" placeholder="Please enter a url" required />
-            <input type="text" name="preferred_short_url" class="url-input block margin-middle vertical-margin-small" placeholder="Enter enter preferred short url" />
-            <button class="url-submit margin-middle vertical-margin-medium" type="submit">Shorten URL</button>
-        </form>
-         <div id="shorten-action">API shorten</div>
+            <input id="url" type="text" name="url" class="url-input block margin-middle vertical-margin-small" placeholder="Please enter a url" required />
+            <input id="preferred_short_url" type="text" name="preferred_short_url" class="url-input block margin-middle vertical-margin-small" placeholder="Enter enter preferred short url" />
+            <button id="shorten-action" class="url-submit margin-middle vertical-margin-medium" type="submit">Shorten URL</button>
     </div>
+     <div id="response-wrapper" class="hidden">
+        <p id="response-label">Short URL:</p>
+        <p id="response-data"></p>
+     </div><!--response_wrapper -->
   </body>
   <script src="assets/app.js"></script>
 </html>
