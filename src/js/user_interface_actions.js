@@ -21,3 +21,7 @@ function display_response () {
     ui_container.className = 'hidden';
     response_container.className = '';
 }
+
+function show_clipboard_prompt(text) {
+    //window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
