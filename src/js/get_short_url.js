@@ -4,7 +4,6 @@
 
 function get_short_url(input_url) {
     //use API to get short url
-    var api_domain = 'http://url-shorten.tomi.dev/';
     var full_url_value = document.getElementById('url').value;
     //call the api function with my callback
     var short_url_api_return = send_api_request(api_domain + 'api', 'url', full_url_value, function(result) {
