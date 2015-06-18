@@ -10,7 +10,7 @@ function get_short_url(input_url) {
     var short_url_api_return = send_api_request(api_domain + 'api', 'url', full_url_value, function(result) {
         var short_url = short_url_from_api_return(result);
         var response_data = document.getElementById('response-data');
-        var response_link = create_short_url_link(api_domain, short_url);
+        var response_link = create_short_url_link(api_domain, short_url, 'response-link');
         response_data.appendChild(response_link);
         display_response();
         //show_clipboard_prompt(api_domain+short_url);
@@ -38,9 +38,10 @@ function send_api_request(url, parameter, value, callback) {
     xmlhttp.send();
 }
 
-function create_short_url_link (domain, short_url) {
+function create_short_url_link (domain, short_url, id) {
     var response_link = document.createElement('a');
     response_link.href = domain+short_url;
+    response_link.id = id;
     response_link.innerHTML = domain+short_url;
     return response_link;
 }
@@ -61,4 +62,3 @@ function add_data_to_copy(id_to_copy_from ,data) {
         copy_button.innerHTML = 'Copied';
     });
 }
-
