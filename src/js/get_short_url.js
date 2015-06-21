@@ -5,8 +5,13 @@
 function get_short_url(input_url) {
     //use API to get short url
     var full_url_value = document.getElementById('url').value;
+    var preferred_short_url = document.getElementById('preferred_short_url').value;
     //call the api function with my callback
-    var short_url_api_return = send_api_request(api_domain + 'api', 'url', full_url_value, function(result) {
+    var get_parameters = {url:full_url_value};
+    if (preferred_short_url != '') {
+        get_parameters.preferred_short_url = preferred_short_url;
+    }
+    var short_url_api_return = send_api_request(api_domain + 'api', get_parameters, function(result) {
         var short_url = short_url_from_api_return(result);
         var response_data = document.getElementById('response-data');
         var response_link = create_short_url_link(api_domain, short_url, 'response-link');
@@ -17,7 +22,8 @@ function get_short_url(input_url) {
     });
 }
 
-function send_api_request(url, parameter, value, callback) {
+function send_api_request(url, parameters, callback) {
+    console.log(parameters);
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp=new XMLHttpRequest();
@@ -32,7 +38,16 @@ function send_api_request(url, parameter, value, callback) {
         }
     };
 
-    var full_request_url = url+'/?'+parameter+'='+value;
+    var full_url = parameters.url;
+    var short_url = parameters.preferred_short_url;
+
+    var full_request_url = url+'/?url='+full_url;
+
+    if (short_url){
+        var preferred_short_url = parameters.preferred_short_url;
+        full_request_url += '&preferred_short_url='+preferred_short_url;
+    }
+    
     xmlhttp.open("GET",full_request_url,true);
     xmlhttp.send();
 }
@@ -52,7 +67,6 @@ function short_url_from_api_return(returned_date ){
 
 function add_data_to_copy(id_to_copy_from ,data) {
     var copy_button = document.getElementById(id_to_copy_from);
-    console.log(copy_button);
     copy_button.setAttribute('data-clipboard-text', data);
 
     var client = new ZeroClipboard(copy_button);
