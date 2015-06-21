@@ -11,12 +11,11 @@ function shorten_url($input_url) {
     $input_url=tomi_escape_string($input_url);
     $input_url=htmlspecialchars($input_url);
 
-    $url_hash = hash_url($input_url);
-    $url_partial_hash=url_substring($url_hash);
+    $url_hash = get_short_url($input_url);
 
     $input_url = http_pad_url($input_url);
 
-    $short_url = insert_url($input_url, $url_partial_hash);
+    $short_url = insert_url($input_url, $url_hash);
 
     return($short_url);
 }

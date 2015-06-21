@@ -7,14 +7,18 @@ function variable_dump($variable){
     die();
 }
 
-function hash_url($input_url) {
+function get_short_url($input_url) {
     $url_hash=md5($input_url+time());
-    return $url_hash;
-}
+    $short_url=substr($url_hash, 0, 6);
 
-function url_substring($url_hash) {
-    $url_partial_hash=substr($url_hash, 0, 6);
-    return $url_partial_hash;
+    if (isset($_GET['preferred_short_url'])) {
+        $url_free = check_if_short_url_already_taken($_GET['preferred_short_url']);
+        if ($url_free) {
+            $short_url = $_GET['preferred_short_url'];
+        }
+    }
+
+    return $short_url;
 }
 
 function http_pad_url($input_url) {
@@ -93,12 +97,14 @@ function check_if_short_url_already_taken($short_url) {
     $rows=tomi_number_of_rows($query_result);
     //return ($rows > 0) ? true : false;
     if ($rows == 0) {
+        $url_free = true;
         $long_url = false;
     }
     else {
+        $url_free = false;
         $long_url=query_row_by_name($query_result, 'url_value');
     }
-    return $long_url;
+    return $url_free;
 }
 
 function get_existing_short_url ($input_url) {
