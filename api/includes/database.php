@@ -96,6 +96,10 @@ function get_column_from_row($row, $column) {
     return $column_data;
 }
 
+function db_fetch_assoc($query_result) {
+    return mysqli_fetch_assoc($query_result);
+}
+
 function tomi_fetch_array($query_result) {
     return mysqli_fetch_array($query_result);
 }
