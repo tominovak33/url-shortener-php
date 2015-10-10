@@ -165,11 +165,11 @@ function increment_url_counter($short_url) {
 }
 
 function search_url_database($search_term) {
-    $fields = "`url_short`";
-    $criteria = "`url_short` = '$search_term'";
+    $fields = "*";
+    $criteria = "`url_short` LIKE '$search_term'";
     $sql_query = select_query_builder('url_table' , $fields, $criteria);
     $query_result = db_query($sql_query);
-    $search_results = query_row_by_name($query_result, 'url_short');
+    $search_results = query_row_by_name($query_result, true);
 
     return $search_results;
 }
