@@ -30,3 +30,13 @@ function get_url($short_url) {
 
     return $full_url;
 }
+
+function get_search_results($search_term) {
+
+    $search_term=tomi_escape_string($search_term);
+
+    $search_results = search_url_database($search_term);
+
+    return $search_results;
+
+}

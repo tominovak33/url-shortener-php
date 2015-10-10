@@ -31,5 +31,10 @@ elseif (isset($_GET['short_url'])) {
     $response['full_url'] = $full_url;
 }
 
+elseif (isset($_GET['search'])) {
+
+    $response = get_search_results($_GET['search']);
+}
+
 $response = json_encode($response);
 echo $response;

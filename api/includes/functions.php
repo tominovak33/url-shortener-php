@@ -164,6 +164,16 @@ function increment_url_counter($short_url) {
     return true;
 }
 
+function search_url_database($search_term) {
+    $fields = "`url_short`";
+    $criteria = "`url_short` = '$search_term'";
+    $sql_query = select_query_builder('url_table' , $fields, $criteria);
+    $query_result = db_query($sql_query);
+    $search_results = query_row_by_name($query_result, 'url_short');
+
+    return $search_results;
+}
+
 /*
  * Visual feedback
  */
