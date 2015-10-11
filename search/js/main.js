@@ -23,14 +23,33 @@ function sendSearchQuery (search_term, callback) {
 }
 
 function processSearchResults(search_results) {
-  //console.log(search_results);
-  var returnedItems = JSON.parse(search_results);
-  //console.log(returnedItems);
+    //console.log(search_results);
+    var returnedItems = JSON.parse(search_results);
+    clearDropdown();
+    var url_dropdown = document.getElementById('url_dropdown');
+    //console.log(returnedItems);
 
-  for (var key in returnedItems) {
-    if (returnedItems.hasOwnProperty(key)) {
-        var returnedItem = returnedItems[key];
-        console.log(returnedItem);
+    for (var key in returnedItems) {
+        if (returnedItems.hasOwnProperty(key)) {
+            var returnedItem = returnedItems[key];
+            //console.log(returnedItem);
+            var url_item = document.createElement('option');
+            url_item.setAttribute('value', returnedItem.url_short);
+            url_item.innerHTML = returnedItem.url_short;
+            console.log(url_item);
+            url_dropdown.appendChild(url_item);
+        }
     }
-  }
+
+    $(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
 }
+
+function clearDropdown () {
+    var url_dropdown = document.getElementById('url_dropdown');
+
+    while (url_dropdown.firstChild) {
+        url_dropdown.removeChild(url_dropdown.firstChild);
+    }
+}
+
+ //$(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
