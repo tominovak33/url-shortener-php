@@ -4,8 +4,12 @@
 
 var tag_input = document.getElementById("url_input");
 tag_input.onkeyup = function(){
-    console.log(tag_input.value);
+  if (tag_input.value.length > 0) {
     sendSearchQuery(tag_input.value, processSearchResults);
+  }
+  else {
+    clearDropdown();
+  }
  };
 
 function sendSearchQuery (search_term, callback) {

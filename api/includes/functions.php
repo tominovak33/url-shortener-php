@@ -169,11 +169,14 @@ function search_url_database($search_term) {
     $fields = "*";
     $criteria = "`url_short` LIKE '%$search_term%'";
     $sql_query = select_query_builder('url_table' , $fields, $criteria);
+    $search_lenght = strlen($search_term);
+    $limit = ($search_lenght*$search_lenght);
+    $sql_query .= "LIMIT "."$limit";
     $query_result = db_query($sql_query);
     while ($row = db_fetch_assoc($query_result)) {
         $search_results[] = $row;
     }
-
+    shuffle($search_results);
     return $search_results;
 }
 
